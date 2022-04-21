@@ -10,10 +10,10 @@
 
 <script lang="ts" setup>
 import {computed,ref,watch} from 'vue'
-import {ElIcon} from '@element-plus/components/icon'
+// import {ElIcon} from '@element-plus/components/icon'
 import {useNamespace} from '@element-plus/hooks'
 import {addUnit,isNumber,isString} from "@element-plus/utils"
-import {aavatarEmits,avatarProps} from './avatar'
+// import {avatarEmits,avatarProps} from './avatar'
 import type {CSSProperties} from 'vue'
 defineOptions({
     name:"ElAvatar"
