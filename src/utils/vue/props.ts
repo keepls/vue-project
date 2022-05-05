@@ -87,8 +87,93 @@ export function buildProp<
 
     const {values,required,default:defaultValue,type,validator}=option
 
-    // const _validator=
+    const _validator=
+        values || validator
+            ?(val:unknown)=>{
+                let valid=false
+                let allowedValues:unknown[]=[]
+                if (values) {
+                    allowedValues=Array.from(values)
+                    if (hasOwn(option,'default')) {
+                        allowedValues.push(defaultValue)
+                    }
+                    valid ||=allowedValues.includes(val)
+                }
+                if(validator) valid ||=validator(val)
+                if (!valid && allowedValues.length>0) {
+                    const allowValuesText=[...new Set(allowedValues)]
+                    .map((value)=>JSON.stringify(value))
+                    .join(', ')
+                    warn(
+                        `Invalid prop: validation failed${
+                            key ? ` for prop "${key}"` : ''
+                          }. Expected one of [${allowValuesText}], got value ${JSON.stringify(
+                            val
+                          )}.`
+                    )
+                }
+                return valid
+            }:undefined
+
+            const prop:any={
+                type:isObject(type) && Object.getOwnPropertySymbols(type).includes(wrapperKey)
+                ? type[wrapperKey]
+                :type,
+                required:!!required,
+                validator:_validator,
+                [propKey]:true,
+            }
+            if(hasOwn(option,'default')) prop.default=defaultValue
+            return prop as BuildPropReturn<T,D,R,V,C>
 }
+
+type NativePropType=[
+    ((...args:any)=>any) | {new (...args:any):any} | undefined | null
+]
+
+export const buildProps=<
+    O extends{
+        [K in keyof O]:O[K] extends BuildPropReturn<any,any,any,any,any>
+        ? O[K]
+        :[O[k]] extends NativePropType
+        ?O[K]
+        :O[K] extends BuildPropOption<
+            infer T,
+            infer D,
+            infer R,
+            infer V,
+            infer C
+        >
+        ? D extends BuildPropType<T,V,C>
+         ? BuildPropOption<T,D,R,V,C>
+         :never
+        :never 
+    }
+>(
+    props:0
+)=> fromPairs(
+    Object.entries(props).map(([key,Option])=>[
+        key,
+        buildProp(option as any,key)
+    ])
+)as unknown as{
+    [K in keyof O]:O[K] extends {[propKey]:boolean}
+    ?O[K]
+    :[O[K]] extends NativePropType
+    ?O[K]
+    :O[K] extends BuildPropOption<
+        infer T,
+        infer _D,
+        infer R,
+        infer V,
+        infer C
+    >
+    ? BuildPropReturn<T,O[K]['default'],R,V,C>
+    :never
+} 
+
+export const definePropType=<T>(val:any)=>
+    ({[wrapperKey]:val} as PropWrapper<T>)
 
 
 
