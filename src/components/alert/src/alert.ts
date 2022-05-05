@@ -1,4 +1,4 @@
-import {TypeComponentsMap,buildProps,keysOf} from "../../utils"
+import {TypeComponentsMap,buildProps,keysOf} from "../../../utils"
 import type {ExtractPropTypes} from 'vue'
 import type Alert from "./alert.vue"
 

@@ -1,4 +1,4 @@
-import {buildProps,definePropType,iconPropType} from '@element-plus/utils'
+import {buildProps,definePropType,iconPropType} from '../../utils'
 import {componentSizes} from '@element-plus/constants'
 import type {ExtractPropTypes} from 'vue'
 import type {ObjectFitProperty} from 'csstype'
