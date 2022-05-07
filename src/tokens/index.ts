@@ -4,7 +4,7 @@
 // export * from './collapse'
 export * from './config-provider'
 // export * from './dialog'
-// export * from './form'
+export * from './form'
 // export * from './pagination'
 // export * from './radio'
 // export * from './row'

@@ -23,7 +23,7 @@ const { circleUrl} = toRefs(state)
      <button>Offset top 120px</button>
     </affix> -->
   <!-- </div> -->
-  <avatar :src="circleUrl"></avatar>
+  <avatar :src="circleUrl" :size="90" :shape="square"></avatar>
   
 </template>
 
