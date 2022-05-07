@@ -1,33 +1,34 @@
 <template>
     <span :class="avatarClass" :style="sizeStyle">
         <img v-if="(src || srcSet) && !hasLoadError" :src="src" :alt="alt" :srcset="srcSet" :style="fitStyle" @error="handleError">
-        <el-icon v-else-if="icon"> 
+        <!-- <el-icon v-else-if="icon"> 
             <component :is="icon" />
-        </el-icon>
+        </el-icon> -->
         <slot v-else />
     </span>
 </template>
 
 <script lang="ts" setup>
 import {computed,ref,watch} from 'vue'
-import {ElIcon} from '@element-plus/components/icon'
-import {useNamespace} from '@element-plus/hooks'
-import {addUnit,isNumber,isString} from "@element-plus/utils"
-// import {avatarEmits,avatarProps} from './avatar'
+// import {ElIcon} from '@element-plus/components/icon'
+import {useNamespace} from '../../../hooks'
+import {addUnit,isNumber,isString} from "../../../utils"
+import {avatarEmits,avatarProps} from './avatar'
 import type {CSSProperties} from 'vue'
-defineOptions({
-    name:"ElAvatar"
-})
+// defineOptions({
+//     name:"ElAvatar"
+// })
 const props=defineProps(avatarProps)
-const emit=defineEmits(aavatarEmits)
+const emit=defineEmits(avatarEmits)
 const ns=useNamespace('avatar')
 const hasLoadError=ref(false)
 
 const avatarClass=computed(()=>{
-    const {size,icon,shape}=props
+    // const {size,icon,shape}=props
+    const {size,shape}=props
     const classList=[ns.b()]
     if(isString(size)) classList.push(ns.m(size))
-    if(icon) classList.push(ns.m('icon'))
+    // if(icon) classList.push(ns.m('icon'))
     if(shape) classList.push(ns.m(shape))
     return classList
 })

@@ -13,15 +13,15 @@ import {
   useEventListener,
   useWindowSize,
 } from '@vueuse/core'
-import { getScrollContainer, throwError } from '../../utils'
-import { useNamespace } from '../../hooks'
+import { getScrollContainer, throwError } from '../../../utils'
+import { useNamespace } from '../../../hooks'
 import { affixEmits, affixProps } from './affix'
 import type { CSSProperties } from 'vue'
 
 const COMPONENT_NAME = 'ElAffix'
-defineOptions({
-  name: 'ElAffix',
-})
+// defineOptions({
+//   name: 'ElAffix',
+// })
 
 const props = defineProps(affixProps)
 const emit = defineEmits(affixEmits)
