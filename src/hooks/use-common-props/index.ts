@@ -4,7 +4,7 @@ import { buildProp } from '../../utils'
 import { componentSizes } from '../../constants'
 import { useProp } from '../use-prop'
 import { useGlobalConfig } from '../use-global-config'
-import type { ComponentSize } from '@element-plus/constants'
+import type { ComponentSize } from '../../constants'
 import type { MaybeRef } from '@vueuse/core'
 
 export const useSizeProp = buildProp({

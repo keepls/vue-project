@@ -8,7 +8,7 @@ import {
   hasClass,
   removeClass,
   throwError,
-} from '@element-plus/utils'
+} from '../../utils'
 
 import type { Ref } from 'vue'
 

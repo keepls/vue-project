@@ -12,7 +12,7 @@ import type {
   FormLabelWidthContext,
   FormProps,
 } from '@element-plus/components/form'
-import type { Arrayable } from '@element-plus/utils'
+import type { Arrayable } from '../utils'
 
 export interface FormItemRule extends RuleItem {
   trigger?: Arrayable<string>

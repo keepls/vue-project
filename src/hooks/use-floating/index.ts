@@ -3,7 +3,7 @@ import { isClient, unrefElement } from '@vueuse/core'
 import { isNil } from 'lodash-unified'
 import { arrow as arrowCore, computePosition } from '@floating-ui/dom'
 
-import { buildProps } from '@element-plus/utils'
+import { buildProps } from '../../utils'
 
 import type { Ref, ToRefs } from 'vue'
 import type {
